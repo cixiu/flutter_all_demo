@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/navigation_bottom_bar.dart';
 import 'pages/flutter_layout_demo.dart';
+import 'pages/tabBar_demo.dart';
 
 class RouteItem {
   final String title;
@@ -20,5 +21,9 @@ List<RouteItem> getRouteList(BuildContext context) {
     ..add(RouteItem(
         title: '布局Demo',
         route: MaterialPageRoute(
-            builder: (BuildContext context) => LayoutDemo())));
+            builder: (BuildContext context) => LayoutDemo())))
+    ..add(RouteItem(
+        title: 'TabBar Demo',
+        route: MaterialPageRoute(
+            builder: (BuildContext context) => TabBarDemo())));
 }
