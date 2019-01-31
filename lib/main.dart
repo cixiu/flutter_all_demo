@@ -50,23 +50,23 @@ class _MyHomePageState extends State<MyHomePage> {
     print('执行了build'); // build方法会多次执行
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: ListView.separated(
-          itemCount: routeList.length,
-          itemBuilder: (context, index) {
-            return RawMaterialButton(
-              child: Text('${routeList[index].title} - 已点击 $_count 次'),
-              padding: EdgeInsets.all(20.0),
-              // fillColor: Colors.lightBlue,
-              onPressed: () {
-                _buttonPressed(context, routeList[index]);
-              },
-            );
-          },
-          separatorBuilder: (context, index) => Divider(),
-        ),
-      );
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: ListView.separated(
+        itemCount: routeList.length,
+        itemBuilder: (context, index) {
+          return RawMaterialButton(
+            child: Text('${routeList[index].title} - 已点击 $_count 次'),
+            // padding: EdgeInsets.all(20.0),
+            // fillColor: Colors.lightBlue,
+            onPressed: () {
+              _buttonPressed(context, routeList[index]);
+            },
+          );
+        },
+        separatorBuilder: (context, index) => Divider(),
+      ),
+    );
   }
 }

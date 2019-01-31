@@ -37,9 +37,15 @@ class _TabBarDemoState extends State<TabBarDemo> with SingleTickerProviderStateM
         ],
       ),
       bottomNavigationBar: Container(
-        color: Colors.white,
-        // height: 50.0,
+        // color: Colors.white, /// 写了decoration属性后，color属性要写到decoration中
+        height: 50.0,
         padding: const EdgeInsets.all(0.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            top: BorderSide(width: 0.5, color: Colors.grey[200])
+          )
+        ),
         child: TabBar(
           controller: this.tabController,
           indicatorColor: Colors.transparent,
@@ -48,7 +54,29 @@ class _TabBarDemoState extends State<TabBarDemo> with SingleTickerProviderStateM
           isScrollable: false,
           // labelPadding: const EdgeInsets.all(0.0),
           tabs: <Widget>[
-            Tab(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.home),
+                Text('首页', style: TextStyle(fontSize: 12.0),),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.phone),
+                Text('联系人', style: TextStyle(fontSize: 12.0),),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.email),
+                Text('邮件', style: TextStyle(fontSize: 12.0),),
+              ],
+            ),
+
+            /* Tab(
               text: '首页',
               icon: Icon(Icons.home),
             ),
@@ -59,7 +87,7 @@ class _TabBarDemoState extends State<TabBarDemo> with SingleTickerProviderStateM
             Tab(
               text: '邮件',
               icon: Icon(Icons.email),
-            ),
+            ), */
           ],
         ),
       ),
