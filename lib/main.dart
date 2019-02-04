@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.separated(
+        key: UniqueKey(),
         itemCount: routeList.length,
         itemBuilder: (context, index) {
           return RawMaterialButton(
