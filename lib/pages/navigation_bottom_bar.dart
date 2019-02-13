@@ -24,6 +24,7 @@ class _BottomNavigationBarRouterState extends State<BottomNavigationBarRouter> {
         elevation: 0.0,
       ),
       body: Container(
+        color: Colors.white,
         padding: EdgeInsets.all(0.0),
         child: ListView(
           children: <Widget>[
@@ -45,6 +46,20 @@ class _BottomNavigationBarRouterState extends State<BottomNavigationBarRouter> {
               fillColor: _isOriginNavigationBottomBar ? Colors.grey[400] : Colors.green[500],
               onPressed: () => setState(() => _isOriginNavigationBottomBar = false),
             ),
+
+            Container(
+              margin: const EdgeInsets.only(top: 20.0),
+              height: 50.0,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    offset: Offset(0.0, -0.5),
+                    blurRadius: 0.5
+                  )
+                ]
+              ),
+            )
           ],
         ),
       ),
@@ -78,10 +93,20 @@ class _BottomNavigationBarRouterState extends State<BottomNavigationBarRouter> {
   // 自定义底部导航栏
   Widget _customBottomNavigationBar() {
     return SafeArea(
-      child: SizedBox(
+      child: Container(
         height: 50.0,
+        decoration: BoxDecoration(
+          border: Border(top: BorderSide(width: 0.5,color: Colors.grey[200])),
+          // boxShadow: <BoxShadow>[
+          //   BoxShadow(
+          //     offset: Offset(0.0, -0.5),
+          //     blurRadius: 0.0,
+
+          //   )
+          // ]
+        ),
         child: Card(
-          color: Platform.isIOS ? Colors.transparent : Colors.white,
+          // color: Colors.grey[100],
           elevation: Platform.isIOS ? 0.0 : 8.0,
           shape: RoundedRectangleBorder(),
           margin: const EdgeInsets.all(0.0),
