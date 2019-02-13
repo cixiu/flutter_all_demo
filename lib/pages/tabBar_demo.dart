@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+
+import 'package:flutter_all_demo/store/reducers/index.dart';
+import 'package:flutter_all_demo/store/actions/actions.dart';
+import 'package:flutter_all_demo/model/user.dart';
+
+enum Action {
+  Increment,
+}
 
 class TabBarDemo extends StatefulWidget {
   _TabBarDemoState createState() => _TabBarDemoState();
@@ -31,9 +40,45 @@ class _TabBarDemoState extends State<TabBarDemo> with SingleTickerProviderStateM
       body: TabBarView(
         controller: this.tabController,
         children: <Widget>[
-          Text('AAA'),
-          Text('BBB'),
-          Text('CCC'),
+          StoreConnector<AppState, String>(
+            converter: (store) => store.state.count.toString(),
+            builder: (context, count) {
+              return Text('AAA $count');
+            },
+          ),
+          // Text('AAA'),
+          // Text('BBB'),
+          StoreConnector<AppState, User>(
+            converter: (store) => store.state.userInfo,
+            builder: (context, userInfo) {
+              return Column(
+                children: <Widget>[
+                  Text(
+                    'BBB ${userInfo.name} ${userInfo.gender} ${userInfo.age} ${userInfo.address}',
+                    style: TextStyle(fontSize: 18.0, color: Colors.lightBlue),
+                  ),
+                  RaisedButton(
+                    child: Text('跳过这一年'),
+                    onPressed: () {
+                      print(UpdateUserAction(User(age: userInfo.age + 1)));
+                      StoreProvider.of<AppState>(context).dispatch(UpdateUserAction(User(age: userInfo.age + 1)));
+                      // StoreProvider.of<AppState>(context).dispatch(UserAction(type: 'Update', userInfo:User(age: userInfo.age + 1)));
+                    },
+                  )
+                ],
+              );
+            },
+          ),
+          StoreBuilder<AppState>(
+            builder: (context, store) {
+              User userInfo = store.state.userInfo;
+              return Text(
+                'CCC ${userInfo.name} ${userInfo.gender} ${userInfo.age} ${userInfo.address}',
+                style: TextStyle(fontSize: 18.0, color: Colors.red),
+              );
+            },
+          ),
+          // Text('CCC'),
         ],
       ),
       bottomNavigationBar: Container(
@@ -62,6 +107,23 @@ class _TabBarDemoState extends State<TabBarDemo> with SingleTickerProviderStateM
             ),
           ],
         ),
+      ),
+      floatingActionButton: StoreConnector<AppState, VoidCallback>(
+        converter: (store) {
+          return () {
+              store.dispatch(DesCountAction());
+              // store.dispatch(CountAction(type: 'Decrement'));
+          };
+        },
+        builder: (context, callback) {
+          return FloatingActionButton(
+            child: Icon(Icons.remove),
+            onPressed: () {
+              callback();
+            },
+            tooltip: 'Decrement count',
+          );
+        },
       ),
     );
   }
