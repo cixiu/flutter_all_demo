@@ -10,11 +10,9 @@ User _updateUserInfo(User state, UpdateUserAction action) {
   return action.userInfo;
 }
 
-// User userReducer(User state, UserAction action) {
-//   switch(action.type) {
-//     case 'Update':
-//       return action.userInfo ?? state;
-//     default:
-//       return state;
+// User userReducer(User state, action) {
+//   if (action is UserAction) {
+//     return action.userInfo;
 //   }
+//   return state;
 // }

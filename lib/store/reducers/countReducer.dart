@@ -7,23 +7,23 @@ final countReducer = combineReducers<int>([
 ]);
 
 int _addCountReducer (int state, AddCountAction action) {
-  print('add count');
+  print('add count ${action.count}');
   return state + action.count;
 }
 
 int _desCountReducer (int state, DesCountAction action) {
-  print('minus count');
+  print('minus count ${action.count}');
   return state - action.count;
 }
 
-// int countReducer(int state, CountAction action) {
-//   print(3213);
-//   switch(action.type) {
-//     case 'Increment':
-//       return state + action.count;
-//     case 'Decrement':
-//       return state - action.count;
-//     default:
-//       return state;
+// int countReducer(int state, action) {
+//   if (action is AddCountAction) {
+//     return state + action.count;
 //   }
+
+//   if (action is DesCountAction) {
+//     return state - action.count;
+//   }
+
+//   return state;
 // }

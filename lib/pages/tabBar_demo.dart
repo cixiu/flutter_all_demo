@@ -140,7 +140,6 @@ class _TabBarDemoState extends State<TabBarDemo> with SingleTickerProviderStateM
         converter: (store) {
           return () {
               store.dispatch(DesCountAction());
-              // store.dispatch(CountAction(type: 'Decrement'));
           };
         },
         builder: (context, callback) {

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+
+import 'package:redux_dev_tools/redux_dev_tools.dart';
+import 'package:flutter_redux_dev_tools/flutter_redux_dev_tools.dart';
+
 // import 'package:flutter/src/widgets/navigator.dart';
 import 'package:flutter_all_demo/model/user.dart';
 import 'package:flutter_all_demo/store/reducers/index.dart';
@@ -13,7 +18,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // init store
-  final store = Store<AppState>(appReducer, initialState: AppState(userInfo: User(), count: 0));
+  final store = DevToolsStore<AppState>(appReducer, initialState: AppState(userInfo: User(), count: 0));
 
   @override
   Widget build(BuildContext context) {
@@ -24,22 +29,27 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage(title: 'Flutter Demo Home Page'),
+        home: MyHomePage(store: store, title: 'Flutter Demo Home Page'),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
   final String title;
+  final DevToolsStore<AppState> store;
+
+  MyHomePage({Key key, this.store, this.title}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(store);
 }
 
 class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMixin {
+  final DevToolsStore<AppState> store;
+
+  _MyHomePageState(this.store);
+
   int _count = 0;
 
   @override
@@ -103,7 +113,6 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
         ),
         floatingActionButton: StoreConnector<AppState, VoidCallback>(
           converter: (store) => () => store.dispatch(AddCountAction()),
-          // converter: (store) => () => store.dispatch(CountAction(type: 'Increment')),
           builder: (context, callback) {
             return FloatingActionButton(
               onPressed: callback,
@@ -111,6 +120,9 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
               child: Icon(Icons.add),
             );
           },
+        ),
+        drawer: Container(
+          child: ReduxDevTools(store),
         ),
       );
   }
