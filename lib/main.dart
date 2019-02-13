@@ -74,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
     print('执行了build'); // build方法会多次执行
 
     return Scaffold(
-<<<<<<< HEAD
         appBar: AppBar(
           title: Text(widget.title),
         ),
@@ -114,26 +113,5 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
           },
         ),
       );
-=======
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: ListView.separated(
-        key: UniqueKey(),
-        itemCount: routeList.length,
-        itemBuilder: (context, index) {
-          return RawMaterialButton(
-            child: Text('${routeList[index].title} - 已点击 $_count 次'),
-            // padding: EdgeInsets.all(20.0),
-            // fillColor: Colors.lightBlue,
-            onPressed: () {
-              _buttonPressed(context, routeList[index]);
-            },
-          );
-        },
-        separatorBuilder: (context, index) => Divider(),
-      ),
-    );
->>>>>>> c1368fe288b2dd46e0affc37806c99327bd5ea26
   }
 }
