@@ -1,12 +1,15 @@
-import 'package:dio/dio.dart';
 import './http.dart';
 
+import 'package:flutter_all_demo/model/article_list.dart';
+
 class Api {
-  static getArticleList() async {
+  static Future<Map<String, dynamic>> getArticleList() async {
+    final String url = 'https://www.tzpcc.cn/api/article/list';
     // BUG: params必须是Map<String, dynamic /* String|Iterable<String> */>  
-    var response = await HttpRequest.get(
-        'https://www.tzpcc.cn/api/article/list',
+    Map<String, dynamic> response = await HttpRequest.get(
+        url,
         params: {'offset': '0', 'limit': '10', 'category': 'test'});
-    print(response);
+    // print(response);
+    return response;
   }
 }

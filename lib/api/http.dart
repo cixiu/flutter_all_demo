@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
@@ -6,8 +7,8 @@ var dio = Dio();
 
 /// http请求
 class HttpRequest {
-  static get(String url, { Map<String, dynamic> params}) async {
-    Response response = await dio.get(url, queryParameters: params);
+  static Future<T> get<T>(String url, { Map<String, dynamic> params}) async {
+    Response<T> response = await dio.get(url, queryParameters: params);
     return response.data;
   }
 
