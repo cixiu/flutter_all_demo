@@ -6,6 +6,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux_dev_tools/redux_dev_tools.dart';
 import 'package:flutter_redux_dev_tools/flutter_redux_dev_tools.dart';
 
+import 'package:flutter_all_demo/api/interceptors.dart';
+
 // import 'package:flutter/src/widgets/navigator.dart';
 import 'package:flutter_all_demo/model/user.dart';
 import 'package:flutter_all_demo/store/reducers/index.dart';
@@ -13,6 +15,7 @@ import 'package:flutter_all_demo/store/actions/actions.dart';
 import 'route_list.dart';
 
 void main() {
+  interceptorsDio();
   runApp(MyApp());
 }
 
