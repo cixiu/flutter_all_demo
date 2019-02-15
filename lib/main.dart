@@ -125,6 +125,8 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
           },
         ),
         drawer: Container(
+          width: 330.0,
+          color: Colors.white,
           child: ReduxDevTools(store),
         ),
       );

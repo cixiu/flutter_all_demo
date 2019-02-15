@@ -22,6 +22,12 @@ class _DioNetWordDemoState extends State<DioNetWordDemo> {
     print('====================================================');
   }
 
+  _postLogin() async {
+    Map<String, dynamic> response = await Api.postLogin();
+
+    print(response);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +38,12 @@ class _DioNetWordDemoState extends State<DioNetWordDemo> {
         children: <Widget>[
           Text('http demo'),
           RaisedButton(
-            child: Text('点击发送http请求'),
+            child: Text('点击发送GET请求'),
             onPressed: _getArticleList,
+          ),
+          RaisedButton(
+            child: Text('点击发送POST请求'),
+            onPressed: _postLogin,
           )
         ],
       ),

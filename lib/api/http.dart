@@ -12,8 +12,8 @@ class HttpRequest {
     return response.data;
   }
 
-  static Future post(String url, { Map<String, dynamic> data, Map<String, dynamic> params }) async {
-    Response response = await dio.post(url, data: data, queryParameters: params);
+  static Future<T> post<T>(String url, { Map<String, dynamic> data, Map<String, dynamic> params }) async {
+    Response<T> response = await dio.post(url, data: data, queryParameters: params);
     return response.data;
   }
 }
